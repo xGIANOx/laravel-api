@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title', '150');
             $table->string('img')->nullable();
             $table->text('description')->nullable();
+            $table->string('link')->nullable();
+            $table->string('repo_link')->nullable();
             $table->timestamps();
         });
     }

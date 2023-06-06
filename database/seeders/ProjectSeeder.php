@@ -22,6 +22,8 @@ class ProjectSeeder extends Seeder
             $project->title = $faker->sentence(5);
             $project->description = $faker->paragraphs(asText: true); 
             $project->img = $faker->imageUrl(category: 'projects', format: 'jpg');
+            $project->link = $faker->sentence(5); 
+            $project->repo_link = $faker->sentence(5); 
             $project->save();
         }
     }

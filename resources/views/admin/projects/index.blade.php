@@ -20,6 +20,8 @@
                 <th>Image</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Link</th>
+                <th>Repo Link</th>
                 <th>Actions</th>
 
             </tr>
@@ -33,6 +35,8 @@
                 <td><img height="100" src="{{$project->img}}" alt="{{$project->title}}"></td>
                 <td>{{$project->title}}</td>
                 <td>{{$project->description}}</td>
+                <td>{{$project->link}}</td>
+                <td>{{$project->repo_link}}</td>
                 {{-- <td>{{$post->slug}}</td> --}}
                 <td>
 
