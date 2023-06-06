@@ -40,7 +40,48 @@
                 {{-- <td>{{$post->slug}}</td> --}}
                 <td>
 
-                    VIEW/EDIT/DELETE
+                    
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a class="text-white text-decoration-none" href="{{route('admin.projects.show', $project->id)}}" title="View" class="text-decoration-none">
+                            View
+                        </a>
+                    </button>
+                    
+
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a class="text-white text-decoration-none" href="{{route('admin.projects.edit', $project->id )}}" title="Edit" class="text-decoration-none">
+                            Edit
+                        </a>
+                    </button>
+                    
+                    <form action="{{route('admin.projects.destroy', $project->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modal-{{$project->id}}">
+                            Delete
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal-{{$project->id}}" tabindex="-1" aria-labelledby="modal-{{$project->id}}" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modal-{{$project->title}}">Are you sure you want to delete {{$project->title}}?</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                The action is permanet!
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+
 
                 </td>
 
