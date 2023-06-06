@@ -2,10 +2,10 @@
 
 
 @section('content')
-<h1>Show posts table</h1>
-<a class="btn btn-dark" href="{{route('admin.posts.create')}}" role="button">Create Post</a>
+<h1>All projects</h1>
+<a class="btn btn-dark" href="{{route('admin.projects.create')}}" role="button">Add a new project</a>
 
-@include('partials.session_message')
+{{-- @include('partials.session_message') --}}
 
 <div class="table-responsive">
     <table class="table table-striped
@@ -17,9 +17,9 @@
 
             <tr>
                 <th>ID</th>
-                <th>Cover</th>
+                <th>Image</th>
                 <th>Title</th>
-                <th>Slug</th>
+                <th>Description</th>
                 <th>Actions</th>
 
             </tr>
@@ -27,12 +27,13 @@
         <tbody class="table-group-divider">
 
 
-            @forelse ($posts as $post)
+            @forelse ($projects as $project)
             <tr class="table-primary">
-                <td scope="row">{{$post->id}}</td>
-                <td><img height="100" src="{{$post->cover_image}}" alt="{{$post->title}}"></td>
-                <td>{{$post->title}}</td>
-                <td>{{$post->slug}}</td>
+                <td scope="row">{{$project->id}}</td>
+                <td><img height="100" src="{{$project->img}}" alt="{{$project->title}}"></td>
+                <td>{{$project->title}}</td>
+                <td>{{$project->description}}</td>
+                {{-- <td>{{$post->slug}}</td> --}}
                 <td>
 
                     VIEW/EDIT/DELETE
@@ -42,7 +43,7 @@
             </tr>
             @empty
             <tr class="table-primary">
-                <td scope="row">No posts yet.</td>
+                <td scope="row">No projects yet.</td>
 
             </tr>
             @endforelse
