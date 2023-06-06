@@ -38,7 +38,7 @@
                 <td>{{$project->link}}</td>
                 <td>{{$project->repo_link}}</td>
                 {{-- <td>{{$post->slug}}</td> --}}
-                <td>
+                <td height='280' class="d-flex flex-column justify-content-center">
 
                     
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
