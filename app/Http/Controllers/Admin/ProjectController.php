@@ -29,18 +29,36 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProjectRequest  $request
+     * @param  \App\Http\Requests\StoreProjectRequest
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $val_data = $request->validate([
+            'title' => 'required|min:5|max:50',
+            'img' => 'nullable|max:255',
+            'link' => 'nullable',
+            'repo_link' => 'nullable',
+            'description' => 'nullable'
+        ]);
+
+        // create a new instance
+        $project = new Project();
+        // save the fileds
+        $project->title = $request->title;
+        $project->img = $request->img;
+        $project->link = $request->link;
+        $project->repo_link = $request->repo_link;
+        $project->description  = $request->description;
+        $project->save();
+
+        return to_route('admin.projects.index')->with('message', 'Project created successfully');
     }
 
     /**
