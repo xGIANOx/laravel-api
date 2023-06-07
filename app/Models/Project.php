@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'img'];
+    protected $fillable = ['title', 'description', 'img', 'type_id'];
 
     public function category(): BelongsTo
     {

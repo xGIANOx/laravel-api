@@ -43,23 +43,27 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $val_data = $request->validate([
-            'title' => 'required|min:5|max:50',
-            'img' => 'nullable|max:255',
-            'link' => 'nullable',
-            'repo_link' => 'nullable',
-            'description' => 'nullable'
-        ]);
+        // $val_data = $request->validate([
+        //     'title' => 'required|min:5|max:50',
+        //     'img' => 'nullable|max:255',
+        //     'link' => 'nullable',
+        //     'repo_link' => 'nullable',
+        //     'description' => 'nullable'
+        // ]);
+
+        $val_data =  $request->validated();
+
+        Project::create($val_data);
 
         // create a new instance
-        $project = new Project();
-        // save the fileds
-        $project->title = $request->title;
-        $project->img = $request->img;
-        $project->link = $request->link;
-        $project->repo_link = $request->repo_link;
-        $project->description  = $request->description;
-        $project->save();
+        // $project = new Project();
+        // // save the fileds
+        // $project->title = $request->title;
+        // $project->img = $request->img;
+        // $project->link = $request->link;
+        // $project->repo_link = $request->repo_link;
+        // $project->description  = $request->description;
+        // $project->save();
 
         return to_route('admin.projects.index')->with('message', 'Project created successfully');
     }
@@ -83,7 +87,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+
+        $types = Type::orderByDesc('id')->get();
+
+        return view('admin.projects.edit', compact('project','types'));
     }
 
     /**
