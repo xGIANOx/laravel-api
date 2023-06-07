@@ -27,6 +27,16 @@
         </div>
 
         <div class="mb-3">
+            <label for="type_id" class="form-label">Types</label>
+            <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+                <option value="">Select a type</option>
+                @foreach ($types as $type)
+                <option value="{{$type->id}}" {{ $type->id  == old('type_id', '') ? 'selected' : '' }}>{{$type->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror" placeholder="Image url here " aria-describedby="imageHelper" value="{{old('image')}}">
             

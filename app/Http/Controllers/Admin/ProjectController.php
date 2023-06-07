@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use App\Http\Controllers\Controller;
 
 
@@ -29,7 +30,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::orderByDesc('id')->get();
+
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
