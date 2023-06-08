@@ -44,7 +44,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="{{ route('admin.projects.index') }}">{{ __('Admin') }}</a>
+                            <a class="nav-link text-black" href="{{ route('admin.projects.index') }}">{{ __('Admin') }}</a>
                         </li>
                     </ul>
 
