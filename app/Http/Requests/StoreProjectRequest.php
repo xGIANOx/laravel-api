@@ -29,7 +29,9 @@ class StoreProjectRequest extends FormRequest
             'link' => 'nullable',
             'repo_link' => 'nullable',
             'description' => 'nullable',
-            'type_id' => ['exists:types,id'] 
+            'type_id' => ['exists:types,id'],
+            'technologies' => ['exists:technologies,id'] 
+
         ];
     }
 }
