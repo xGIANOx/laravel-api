@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 use App\Http\Controllers\Controller;
 
 
@@ -31,8 +32,10 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::orderByDesc('id')->get();
+        $technologies = Technology::orderByDesc('id')->get();
 
-        return view('admin.projects.create', compact('types'));
+
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -43,27 +46,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // $val_data = $request->validate([
-        //     'title' => 'required|min:5|max:50',
-        //     'img' => 'nullable|max:255',
-        //     'link' => 'nullable',
-        //     'repo_link' => 'nullable',
-        //     'description' => 'nullable'
-        // ]);
-
+ 
         $val_data =  $request->validated();
 
-        Project::create($val_data);
-
-        // create a new instance
-        // $project = new Project();
-        // // save the fileds
-        // $project->title = $request->title;
-        // $project->img = $request->img;
-        // $project->link = $request->link;
-        // $project->repo_link = $request->repo_link;
-        // $project->description  = $request->description;
-        // $project->save();
+        $new_project = Project::create($val_data);
+        if ($request->has('technologies')) {
+            $new_project->technologies()->attach($request->technologies);
+        }
 
         return to_route('admin.projects.index')->with('message', 'Project created successfully');
     }
@@ -89,8 +78,9 @@ class ProjectController extends Controller
     {
 
         $types = Type::orderByDesc('id')->get();
+        $technologies = Technology::orderByDesc('id')->get();
 
-        return view('admin.projects.edit', compact('project','types'));
+        return view('admin.projects.edit', compact('project','types','technologies'));
     }
 
     /**

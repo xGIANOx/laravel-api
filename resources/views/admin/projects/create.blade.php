@@ -36,6 +36,23 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <p>Select the technologies</p>
+            @foreach ($technologies as $technology)
+            <div class="form-check @error('technologies') is-invalid @enderror">
+    
+                <label class="form-check-label">
+                    <input name="technologies[]" type="checkbox" value="{{ $technology->id }}" class="form-check-input" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                    {{ $technology->name }}
+                </label>
+            </div>
+            @endforeach
+    
+            @error('technologies')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror" placeholder="Image url here " aria-describedby="imageHelper" value="{{old('image')}}">
